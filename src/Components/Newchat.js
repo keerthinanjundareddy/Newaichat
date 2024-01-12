@@ -37,6 +37,9 @@ function Newchat() {
   const clearSidebarHistory = () => {
     setQuestionOrder([]); // Clear the order of questions
   };
+
+
+  
   const clearConversation = () => {
     // Clear only the chat messages and user input field
 
@@ -136,6 +139,7 @@ function Newchat() {
       .then((response) => {
         console.log("API Response:", response);
         const responseData = JSON.parse(response.data.output);
+        console.log("responsedata",responseData)
         const answer = responseData.answer;
         console.log('Response:', answer);
         setApiResponse((prevResponse) => ({
@@ -220,10 +224,10 @@ function Newchat() {
         <div className='chat-parent-div'>
           <div style={{display:"flex",flexDirection:"row",gap:"10px",alignItems:"center"}} className='inner-chat-paarent-div'>
             <div>
-            <img src={Funding} alt="funding-icon" style={{width:"40px",height:"40px"}} />
+            {/* <img src={Funding} alt="funding-icon" style={{width:"40px",height:"40px"}} /> */}
             </div>
             <div style={{color:"#21261B",fontWeight:"600",letterSpacing:"0.5px"}} className='document-text'>
-              Document.AI
+             CHATBOT
             </div>
           </div>
           <div className='hamburger-button' onClick={hamburgerclose}>
@@ -237,9 +241,9 @@ function Newchat() {
         </div>
 
         <div className='clear-chat-parent-div'>
-          <div className='new-chat-div'  onClick={() => clearConversation()} >
+          <button className='new-chat-div'  onClick={() => clearConversation()}  >
             + New Chat
-          </div>
+          </button>
           <div
             className={`toggle-sidebar-button ${
               mobileSidebarOpen ? 'open' : ''
@@ -313,12 +317,21 @@ function Newchat() {
             ref={messageListRef}
            
           >
+             <div className='user-parent-output-div'>
+                    <div className='user-timestamp-parent-div-two'>
+                      <div className='chatbot-name-div'>BOT</div>
+                      {/* <div className='chatbot-time-div'>{message.timestamp}</div> */}
+                    </div>
+                    <div className='chatbot-output-div'>
+                        Hi,How can i assist you Today?
+                   </div>
+      
+                  </div>
             {messages.map((message, index) => (
               <div
                 key={index}
                 className='message'
-                
-              >
+                >
                
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0px' }}>
                   <div className='user-parent-div'>
@@ -330,7 +343,7 @@ function Newchat() {
                   </div>
                   <div className='user-parent-output-div'>
                     <div className='user-timestamp-parent-div-two'>
-                      <div className='chatbot-name-div'>AGENT</div>
+                      <div className='chatbot-name-div'>BOT</div>
                       {/* <div className='chatbot-time-div'>{message.timestamp}</div> */}
                     </div>
                     <div className='chatbot-output-div'>
